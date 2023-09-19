@@ -20,5 +20,28 @@ class Catalogue {
     return false;
   }
 
-}
+  findProductsByNameLike(subString) {
+    const matches = this.products.filter(function(product) {
+      const position = product.name.search(subString)
+      return position !== -1
+    } )
+    return matches;
+  }
+
+  removeProductById(id){
+    const removedItem = this.products.findIndex((obj) => obj.id === id);
+
+    if(removedItem > -1){
+      this.products.splice(removedItem,1);
+
+      return true;
+    }
+
+      return false;
+    }
+  }
+
+
+
+
 module.exports = Catalogue;
