@@ -39,6 +39,23 @@ class Catalogue {
 
       return false;
     }
+
+
+    
+    checkReorder() {
+      const productsReorder = this.products.filter((product)=> {
+        return product.quantityInStock <= product.reorderLevel;
+      });
+      
+
+      const productIds = productsReorder.map((product)=> product.id);
+
+      return {
+        type:"Reorder",
+        productIds:productIds
+      }
+
+    }
   }
 
 
