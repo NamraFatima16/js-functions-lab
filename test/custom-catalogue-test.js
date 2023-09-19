@@ -2,7 +2,7 @@ const Catalogue = require("../src/productCatalogue");
 const Product = require("../src/product");
 // Setup
 let cat = new Catalogue("Test Catalogue");
-const p123 = new Product("A123", "Product 1", 100, 10, 10.0);
+const p123 = new Product("A123", "Product 1", 100, 8, 10.0);
 const p124 = new Product("A124", "Widget 1", 100, 10, 10.0);
 const p125 = new Product("A125", "A Product 2", 100, 10, 10.0);
 const p126 = new Product("A126", "A Widget 2", 100, 10, 10.0);
@@ -98,3 +98,32 @@ else
   else{
     console.log('\tFailed');
   }
+
+
+   //================================
+
+   cat.addProduct(p123);
+   cat.addProduct(p124);
+   cat.addProduct(p125);
+   
+
+   let expectedResult = {
+    type: "Reorder",
+    productIds: ["A123", "A127"],
+   }
+
+   response = cat.checkReorder();
+
+  
+   
+   
+   console.log("some products will have quantity in stock which will be less than or equal to the reorder level if it exist it will return the type and productid .");
+
+   //Expectation
+   if(response.type === expectedResult.type && response.productIds.length === expectedResult.productIds.length){
+    console.log('\tPassed');
+   }
+   else{
+    console.log('\tFailed');
+  }
+   
